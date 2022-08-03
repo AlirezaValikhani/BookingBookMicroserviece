@@ -1,13 +1,13 @@
-package com.microservice.ReserveBook;
+package com.reservebook.repository;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class ReserveBookApplicationTests {
+class RepositoryApplicationTests {
 
-	@Test
-	void contextLoads() {
-	}
+    @Test
+    void contextLoads() {
+    }
 
 }

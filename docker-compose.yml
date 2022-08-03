@@ -1,0 +1,19 @@
+services:
+  mongodb_container:
+    image: mongo
+    container_name: mongoForBook
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: mongo
+      MONGO_INITDB_ROOT_PASSWORD: mongo
+    ports:
+      - 27017:27017
+  rabbitmq:
+    image: rabbitmq
+    container_name: 'rabbitmq'
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    volumes:
+      - C:\Users\user\Desktop\dockerImagesData\rabbitmq\data:/var/lib/rabbitmq/
+      - C:\Users\user\Desktop\dockerImagesData\rabbitmq\log:/var/log/rabbitmq
+
