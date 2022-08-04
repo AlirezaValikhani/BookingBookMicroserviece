@@ -55,8 +55,7 @@ public class BookRepository {
 
         Map bookMap = new ObjectMapper().convertValue(book, Map.class);
         BasicDBObject update = new BasicDBObject("$set", new BasicDBObject(bookMap));
-        UpdateOptions options = new UpdateOptions().upsert(false);
-        collection.updateOne(query, update, options);
+        collection.updateOne(query, update);
     }
 
     public void delete(String id) {
