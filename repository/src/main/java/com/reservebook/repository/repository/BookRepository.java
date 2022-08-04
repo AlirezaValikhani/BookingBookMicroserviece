@@ -2,12 +2,12 @@ package com.reservebook.repository.repository;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.models.model.Book;
+import com.models.model.dto.SearchPaginationDto;
 import com.mongodb.BasicDBObject;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.UpdateOptions;
-import com.reservebook.repository.dto.SearchPaginationDto;
 import lombok.SneakyThrows;
 import org.bson.Document;
 import org.bson.types.ObjectId;
@@ -50,20 +50,20 @@ public class BookRepository {
 
     public void update(Book book) {
         MongoCollection<Document> collection = mongoDatabase.getCollection("booking");
-        Document query = new Document();
+        BasicDBObject query = new BasicDBObject();
         query.append("_id", new ObjectId(book.getId()));
 
         Map bookMap = new ObjectMapper().convertValue(book, Map.class);
         BasicDBObject update = new BasicDBObject("$set", new BasicDBObject(bookMap));
-        UpdateOptions options = new UpdateOptions().upsert(true);
+        UpdateOptions options = new UpdateOptions().upsert(false);
         collection.updateOne(query, update, options);
     }
 
     public void delete(String id) {
         MongoCollection<Document> collection = mongoDatabase.getCollection("booking");
-        Document document = new Document();
-        document.put("_id", new ObjectId(id));
-        collection.deleteOne(document);
+        Document query = new Document();
+        query.put("_id", new ObjectId(id));
+        collection.deleteOne(query);
     }
 
     public List<Book> findAll() {
@@ -74,7 +74,7 @@ public class BookRepository {
                 .map(doc -> {
                     Book book = new Book();
                     book.setAuthorName(doc.getString("authorName"));
-                    book.setId(doc.getObjectId("_id").toString());
+                    book.setId(doc.get("_id").toString());
                     book.setName(doc.getString("name"));
                     return book;
                 })
