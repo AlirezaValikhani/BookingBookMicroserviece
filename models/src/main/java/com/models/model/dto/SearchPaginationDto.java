@@ -1,4 +1,4 @@
-package com.reservebook.repository.dto;
+package com.models.model.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
