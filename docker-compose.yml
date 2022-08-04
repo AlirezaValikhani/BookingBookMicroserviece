@@ -1,7 +1,7 @@
 services:
   mongodb_container:
     image: mongo
-    container_name: mongoForBook
+    container_name: mongoForReserve
     environment:
       MONGO_INITDB_ROOT_USERNAME: mongo
       MONGO_INITDB_ROOT_PASSWORD: mongo
@@ -9,7 +9,7 @@ services:
       - 27017:27017
   rabbitmq:
     image: rabbitmq
-    container_name: 'rabbitmq'
+    container_name: 'rabbitmqForReserveBook'
     ports:
       - "5672:5672"
       - "15672:15672"
