@@ -5,13 +5,13 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.io.Serializable;
 import java.util.List;
 
-@AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
-public class User {
+public class User implements Serializable {
     private String id;
     private String fullName;
     private String nationalCode;
@@ -22,5 +22,13 @@ public class User {
         this.fullName = fullName;
         this.nationalCode = nationalCode;
         this.email = email;
+    }
+
+    public User(String id, String fullName, String nationalCode, String email, List<Book> books) {
+        this.id = id;
+        this.fullName = fullName;
+        this.nationalCode = nationalCode;
+        this.email = email;
+        this.books = books;
     }
 }
